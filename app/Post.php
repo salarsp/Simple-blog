@@ -11,7 +11,7 @@ class Post extends Model
     ];
 
     // Every post has many comments
-    public function Comment(){
+    public function Comments(){
         return $this->hasMany(Comment::class);
     }
 }
