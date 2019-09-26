@@ -17,6 +17,6 @@ class Comment extends Model
 
     // Every comment has 1 writer
     public function User(){
-        return $this->belongsTo(Post::class);
+        return $this->belongsTo(User::class);
     }
 }
