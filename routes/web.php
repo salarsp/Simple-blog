@@ -11,10 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'MainController@index');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+// Single post route
+Route::get('/post/{id}', 'MainController@post');
+// Adding Comment
+Route::get('/send-comment', 'MainController@add')->middleware('auth')->name('new_comment');

@@ -17,7 +17,7 @@ class CreateCommentsTable extends Migration
             $table->bigIncrements('id');
             $table->integer('user_id')->unsigned()->index();
             $table->integer('post_id')->unsigned()->index();
-            $table->integer('reply_to_comment_id')->unsigned()->index();
+            $table->integer('reply_to_comment_id')->nullable();
             $table->string('content', 2000);
             $table->timestamps();
         });
