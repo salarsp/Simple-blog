@@ -11,7 +11,11 @@
 |
 */
 
+use Illuminate\Support\Facades\Route;
+
 Route::get('/', 'MainController@index');
+
+Route::resource('posts', 'PostController')->middleware('auth');
 
 Auth::routes();
 
@@ -19,5 +23,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 // Single post route
 Route::get('/post/{id}', 'MainController@post');
+//Admin panel
+Route::get('/admin', 'MainController@admin')->middleware(['auth','admin'])->name('admin');
+Route::resource('admin/posts', 'PostController')->middleware(['auth','admin']);
+Route::resource('admin/comments', 'CommentController')->middleware(['auth','admin']);
 // Adding Comment
-Route::get('/send-comment', 'MainController@add')->middleware('auth')->name('new_comment');
+Route::post('/send-comment', 'MainController@add')->middleware('auth')->name('new_comment');
