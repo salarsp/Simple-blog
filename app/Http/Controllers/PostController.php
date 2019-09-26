@@ -33,8 +33,9 @@ class PostController extends Controller
             $image = $request->file('file');
 
             if ($image != null) {
-                $image->move('images/' . '.' . $image->getClientOriginalExtension());
-                $imagePath = '/images/' . '.' . $image->getClientOriginalExtension();
+                $rand = md5(uniqid(rand(), true));
+                $image->move('images/', $rand . '.' . $image->getClientOriginalExtension());
+                $imagePath = 'images/' . $rand . '.' . $image->getClientOriginalExtension();
             }
             $post = new Post();
             $post->title = $title;
